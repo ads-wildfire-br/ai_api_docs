@@ -1,10 +1,25 @@
 # AI API
 
+To cite this software, use:
+
+```bib
+@ARTICLE{10681400,
+  author={Lelis, Claudio A. S. and Roncal, Julio J. and Silveira, Leonardo and De Aquino, Roberto Douglas G. and Marcondes, Cesar A. C. and Marques, Johnny and Loubach, Denis S. and Verri, Filipe A. N. and Curtis, Vitor V. and De Souza, Diego G.},
+  journal={IEEE Access},
+  title={Drone-Based AI System for Wildfire Monitoring and Risk Prediction},
+  year={2024},
+  volume={12},
+  number={},
+  pages={139865-139882},
+  keywords={Wildfires;Predictive models;Sensors;Normalized difference vegetation index;Measurement;Drones;Artificial intelligence;Environmental monitoring;Machine learning;Risk management;Spatiotemporal phenomena;Aerial drones;artificial intelligence;environmental monitoring;machine learning;risk assessment;spatiotemporal data;wildfire detection;wildfire risk estimation},
+  doi={10.1109/ACCESS.2024.3462436}}
+```
+
 ## API Use:
 
 ### End-Points:
 
-#### Prediction end-point `\prediction`: 
+#### Prediction end-point `\prediction`:
 
 - Prediction end-point: `/prediction`
 - POST request.
@@ -33,9 +48,9 @@ Request body example:
 }
 ```
 
-- Important: 
+- Important:
 
-1. The only key that cannot be `null` or `None` is the `tag` key. 
+1. The only key that cannot be `null` or `None` is the `tag` key.
 In case the other keys are not provided the default behavior is to use the data boundaries as the upper and lower limits for prediction.
 2. The `time_begin` and `time_end`, if provided, will be use for filtering the data, but not during prediction.
 3. Prediction will be only performed if these is at least 100 data points available for the provided interval requested.
@@ -52,7 +67,7 @@ In case the other keys are not provided the default behavior is to use the data 
 The request will return a dictionary containing 4 lists of data.
 Each list of lenght `(size-of-mesh * size-of-mesh)`. For the default parameters `(100*100)`.
 
-The lists are: `prediction`, `confidence`, `latitude`, `longitude`. 
+The lists are: `prediction`, `confidence`, `latitude`, `longitude`.
 
 An example of how to use the output of the request to plot the prediction and uncertainty heat-maps can be seen at the file `data_analysis.py`, in the function `request_prediction`.
 
@@ -63,7 +78,7 @@ An example of how to use the output of the request to plot the prediction and un
 
 - Returns basic statistics about the data of a given tag.
 
-- The `<tag>` parameter can take on the values: 
+- The `<tag>` parameter can take on the values:
 `all`, `humidity`, `pressure`, `temperature`, `VARI`, `vNDVI`.
 
 - Example of response, for tag `VARI`:
@@ -112,7 +127,7 @@ An example of how to use the output of the request to plot the prediction and un
 
 - Returns all the data queried from the database, after removing duplicates.
 
-- The `<tag>` parameter can take on the values: 
+- The `<tag>` parameter can take on the values:
 `all`, `humidity`, `pressure`, `temperature`, `VARI`, `vNDVI`.
 
 - The return dictionary is formed by 4 lists, with the values of:
@@ -130,7 +145,7 @@ An example of how to use the output of the request to plot the prediction and un
 2. Run Action `Build Docker Image CI`
 3. Run Action `Helm Deploy to production`
 
-ATTENTION: the deployment to production (action 3) is attached to the latest commit hash, 
+ATTENTION: the deployment to production (action 3) is attached to the latest commit hash,
 so if you want to deploy to production after some commit you musht first build a new image, or the deployment
 will be attached to a hash that may not be associated with any image. This results in an error where the kubernetes pod cannot
 download its corresponding image.
