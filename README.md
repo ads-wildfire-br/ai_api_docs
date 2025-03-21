@@ -1,4 +1,4 @@
-# AI API
+# Environmental Monitoring Spatio Temporal Interpolator
 
 To cite this software, use:
 
